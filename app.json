@@ -4,11 +4,11 @@
         "slug": "princh-todo-list",
         "version": "1.0.0",
         "orientation": "portrait",
-        "icon": "./assets/icon.png",
+        "icon": "./assets/list.png",
         "splash": {
-            "image": "./assets/splash.png",
+            "image": "./assets/list.png",
             "resizeMode": "contain",
-            "backgroundColor": "#ffffff"
+            "backgroundColor": "#cb997e"
         },
         "updates": {
             "fallbackToCacheTimeout": 0
@@ -19,12 +19,12 @@
         },
         "android": {
             "adaptiveIcon": {
-                "foregroundImage": "./assets/adaptive-icon.png",
-                "backgroundColor": "#FFFFFF"
+                "foregroundImage": "./assets/list.png",
+                "backgroundColor": "#cb997e"
             }
         },
         "web": {
-            "favicon": "./assets/favicon.png"
+            "favicon": "./assets/list.png"
         }
     }
 }
