@@ -1,5 +1,5 @@
-import React, { ReactElement } from 'react';
-import { Button, StyleSheet, Text, View } from 'react-native';
+import React, { useState } from 'react';
+import { Button, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 
 import { Colors } from '../../constants/colors';
 
@@ -10,19 +10,41 @@ interface ListItemProps {
 }
 
 const ListItem = (props: ListItemProps) => {
+	const [isFinished, setIsFinished] = useState<boolean>(false);
+
+	const onCheckTodo = () => {
+		setIsFinished(!isFinished);
+	};
+
 	return (
-		<View style={styles.listItem}>
-			<View style={styles.todo}>
-				<Text style={styles.todoText}>{props.children}</Text>
+		<TouchableOpacity onPress={onCheckTodo}>
+			<View
+				style={[
+					styles.listItem,
+					isFinished ? styles.finishedTodo : styles.unfinishedTodo,
+				]}
+			>
+				<View style={styles.todo}>
+					<Text
+						style={[
+							styles.todoText,
+							isFinished
+								? styles.finishedTodoText
+								: styles.unfinishedTodoText,
+						]}
+					>
+						{props.children}
+					</Text>
+				</View>
+				<View style={styles.buttons}>
+					<Button
+						onPress={() => props.onDeleteTodo(props.id)}
+						title='Delete'
+						color={Colors.darkBrown}
+					/>
+				</View>
 			</View>
-			<View style={styles.buttons}>
-				<Button
-					onPress={() => props.onDeleteTodo(props.id)}
-					title='Delete'
-					color={Colors.darkBrown}
-				/>
-			</View>
-		</View>
+		</TouchableOpacity>
 	);
 };
 
@@ -36,7 +58,6 @@ const styles = StyleSheet.create({
 		borderRadius: 5,
 		marginBottom: 15,
 		marginHorizontal: 10,
-		backgroundColor: Colors.beige,
 		shadowColor: Colors.darkBrown,
 		shadowOffset: { width: 5, height: 5 },
 		shadowOpacity: 0.8,
@@ -51,9 +72,20 @@ const styles = StyleSheet.create({
 	},
 	todoText: {
 		fontSize: 20,
-		color: Colors.darkGreen,
 	},
 	buttons: {
 		flexBasis: '25%',
+	},
+	finishedTodo: {
+		backgroundColor: Colors.lightBrown,
+	},
+	unfinishedTodo: {
+		backgroundColor: Colors.beige,
+	},
+	finishedTodoText: {
+		color: Colors.darkBrown,
+	},
+	unfinishedTodoText: {
+		color: Colors.darkGreen,
 	},
 });

@@ -3,7 +3,6 @@ import {
 	StyleSheet,
 	Text,
 	View,
-	FlatList,
 	ListRenderItem,
 	TextInput,
 	NativeSyntheticEvent,
@@ -54,8 +53,9 @@ const TodoList = () => {
 				onChangeText={(newTodo) => setNewTodo(newTodo)}
 				value={newTodo}
 				onSubmitEditing={onSubmit}
-				placeholder={'Add a Todo'}
+				placeholder='Add a Todo'
 				placeholderTextColor={Colors.lightGreen}
+				keyboardAppearance='dark'
 			/>
 			<List data={todos} renderItem={renderTodo} />
 		</View>
